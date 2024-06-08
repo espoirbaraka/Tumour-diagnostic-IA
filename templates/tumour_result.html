@@ -17,12 +17,7 @@
           </ol>
        </section>
        <section class="content">
-        <form action="{% url 'diagnostic:tumour_result' %}" method="POST">
-            {% csrf_token %}
-            <input type="number" name="coma" placeholder="Etat du coma">
-            <input type="number" name="headache" placeholder="Etat du headache">
-            <input type="submit" name="valider">
-        </form>
+        <p>Le resultat est : {{res}}</p>
        </section>
     </div>
  </div>
