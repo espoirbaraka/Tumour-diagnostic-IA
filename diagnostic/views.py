@@ -100,7 +100,8 @@ def tumour_result(request):
              print("Erreur de retour")
 
         context = {
-            'res': res
+            'res': res,
+            'etat':max_state
         }
         # Create your views here.
 
