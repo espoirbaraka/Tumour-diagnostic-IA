@@ -70,5 +70,5 @@ def tumour_result(request):
         )
         # Create your views here.
 
-        template = 'afficher.html'
+        template = 'tumour_result.html'
         return render(request, template)
