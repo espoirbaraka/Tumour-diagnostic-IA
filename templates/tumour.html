@@ -17,15 +17,15 @@
           </ol>
        </section>
        <section class="content">
-        <form action="{% url 'diagnostic:tumour_result' %}" method="POST">
+        {% comment %} <form action="{% url 'diagnostic:tumour_result' %}" method="POST">
             {% csrf_token %}
             <input type="number" name="coma" placeholder="Etat du coma">
             <input type="number" name="headache" placeholder="Etat du headache">
             <input type="submit" name="valider">
-        </form>
+        </form> {% endcomment %}
         <div class="box box-default">
          <div class="box-header with-border">
-            <h3 class="box-title">Select2</h3>
+            <h3 class="box-title">Predire</h3>
             <div class="box-tools pull-right">
                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
@@ -33,63 +33,47 @@
          </div>
          <div class="box-body">
             <div class="row">
-               <div class="col-md-6">
-                  <div class="form-group">
-                     <label>Minimal</label>
-                     <select class="form-control select2" style="width: 100%;">
-                        <option selected="selected">Alabama</option>
-                        <option>Alaska</option>
-                        <option>California</option>
-                        <option>Delaware</option>
-                        <option>Tennessee</option>
-                        <option>Texas</option>
-                        <option>Washington</option>
-                     </select>
+               <form action="{% url 'diagnostic:tumour_result' %}" method="POST">
+                  {% csrf_token %}
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label>Cancer métastatique</label>
+                        <select class="form-control select2" name="cancer" style="width: 100%;">
+                           <option value="1" selected="selected">Oui</option>
+                           <option value="0">Non</option>
+                        </select>
+                     </div>
+                     <div class="form-group">
+                        <label>Augmentation du calcium sérique</label>
+                        <select class="form-control select2" name="calcium" style="width: 100%;">
+                           <option value="1" selected="selected">Oui</option>
+                           <option value="0">Non</option>
+                        </select>
+                     </div>
                   </div>
-                  <div class="form-group">
-                     <label>Disabled</label>
-                     <select class="form-control select2" disabled="disabled" style="width: 100%;">
-                        <option selected="selected">Alabama</option>
-                        <option>Alaska</option>
-                        <option>California</option>
-                        <option>Delaware</option>
-                        <option>Tennessee</option>
-                        <option>Texas</option>
-                        <option>Washington</option>
-                     </select>
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label>Coma</label>
+                        <select class="form-control select2" name="coma" style="width: 100%;">
+                           <option value="1" selected="selected">Oui</option>
+                           <option value="0">Non</option>
+                        </select>
+                     </div>
+                     <div class="form-group">
+                        <label>Maux de tete</label>
+                        <select class="form-control select2" name="tete" style="width: 100%;">
+                           <option value="1" selected="selected">Oui</option>
+                           <option value="0">Non</option>
+                        </select>
+                     </div>
+                     <input type="submit" name="valider" class="btn btn-primary">
                   </div>
-               </div>
-               <div class="col-md-6">
-                  <div class="form-group">
-                     <label>Multiple</label>
-                     <select class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;">
-                        <option>Alabama</option>
-                        <option>Alaska</option>
-                        <option>California</option>
-                        <option>Delaware</option>
-                        <option>Tennessee</option>
-                        <option>Texas</option>
-                        <option>Washington</option>
-                     </select>
-                  </div>
-                  <div class="form-group">
-                     <label>Disabled Result</label>
-                     <select class="form-control select2" style="width: 100%;">
-                        <option selected="selected">Alabama</option>
-                        <option>Alaska</option>
-                        <option disabled="disabled">California (disabled)</option>
-                        <option>Delaware</option>
-                        <option>Tennessee</option>
-                        <option>Texas</option>
-                        <option>Washington</option>
-                     </select>
-                  </div>
-               </div>
+                  
+               </form>
             </div>
          </div>
          <div class="box-footer">
-            Visit <a href="https://select2.github.io/">Select2 documentation</a> for more examples and information about
-            the plugin.
+            
          </div>
       </div>
        </section>

@@ -11,7 +11,9 @@ def tumour_result(request):
     if request.method=='POST':
         try:
             coma=int(request.POST.get('coma'))
-            headache=int(request.POST.get('headache'))
+            headache=int(request.POST.get('tete'))
+            cancer=int(request.POST.get('cancer'))
+            calcium=int(request.POST.get('calcium'))
         except (ValueError, TypeError):
             return HttpResponseBadRequest("Invalid input. Please enter valid integers for coma and headache.")
         medical_model = BayesianNetwork([
@@ -75,10 +77,12 @@ def tumour_result(request):
 
         inference = VariableElimination(medical_model)
         answer = inference.query(
-        variables=['Coma'],
+        variables=['Tumour'],
         evidence={
-            'Tumour': coma,
-            'Serum': headache
+            'Headache': headache,
+            'Metastatic': cancer,
+            'Coma': coma,
+            'Serum': calcium
         })
 
         if answer is not None:
@@ -86,12 +90,12 @@ def tumour_result(request):
             # for state, prob in zip(answer.state_names['Tumour'], answer.values):
             #         result_list.append(f"Tumour({state}): {prob:.4f}")
             max_prob_index = answer.values.argmax()  # Récupérer l'indice de la probabilité maximale
-            max_state = answer.state_names['Coma'][max_prob_index]  # Récupérer l'état correspondant
+            max_state = answer.state_names['Tumour'][max_prob_index]  # Récupérer l'état correspondant
             max_prob = answer.values[max_prob_index]
             if(max_state==0):
-                res=f"Tu n'as pas la tumeur. Tu as une une probabilité de {max_prob}"
+                res=f"Tu n'as pas la tumeur. La probabilité de ne pas l'avoir est de {max_prob*100} %"
             elif(max_state==1):
-                res=f"Tu as une probalibilte d'avoir la tumeur. Tu as une une probabilité de {max_prob}"
+                res=f"Tu as une probalibilte d'avoir la tumeur. La probabilité de l'avoir est de {max_prob*100} %"
         else:
              print("Erreur de retour")
 
