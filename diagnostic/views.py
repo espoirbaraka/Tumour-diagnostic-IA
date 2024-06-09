@@ -86,9 +86,6 @@ def tumour_result(request):
         })
 
         if answer is not None:
-            # result_list = []
-            # for state, prob in zip(answer.state_names['Tumour'], answer.values):
-            #         result_list.append(f"Tumour({state}): {prob:.4f}")
             max_prob_index = answer.values.argmax()  # Récupérer l'indice de la probabilité maximale
             max_state = answer.state_names['Tumour'][max_prob_index]  # Récupérer l'état correspondant
             max_prob = answer.values[max_prob_index]
@@ -103,7 +100,6 @@ def tumour_result(request):
             'res': res,
             'etat':max_state
         }
-        # Create your views here.
 
         template = 'tumour_result.html'
         return render(request, template, context)
