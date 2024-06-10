@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Resultat
+{% endblock title %}
+
+{% block content %}
+<div class="content-wrapper">
+    <div class="container">
+       <section class="content-header">
+          <h1>
+             Resultat : Augmentation du calcium serique
+          </h1>
+          <ol class="breadcrumb">
+             <li><a href="#"><i class="fa fa-dashboard"></i> Acceuil</a></li>
+             <li><a href="/cancer">Cancer metastatique</a></li>
+          </ol>
+       </section>
+       <section class="content">
+        {% if etat %}
+         <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-check"></i> Alert!</h4>
+            {{res}}
+         </div>
+         {% else %}
+         <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-check"></i> Alert!</h4>
+            {{res}}
+         </div>
+         {% endif %}
+       </section>
+    </div>
+ </div>
+{% endblock content %}
